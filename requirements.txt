@@ -1,0 +1,7 @@
+Django==4.2.7
+pandas==2.2.3
+numpy==1.26.0
+scikit-learn==1.5.2
+django-crispy-forms==2.0
+crispy-bootstrap5==0.7
+Pillow==10.0.0

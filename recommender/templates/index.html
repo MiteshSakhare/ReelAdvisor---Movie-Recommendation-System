@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-6 text-center text-lg-start">
+                <h1 class="display-3 fw-bold mb-4">Discover Your Next Favorite Movie</h1>
+                <p class="lead mb-5">ReelAdvisor uses intelligent algorithms to find films you'll love based on your preferences.</p>
+                
+                <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3 mb-5">
+                    <div class="text-center">
+                        <h3 class="fw-bold text-primary">5,000+</h3>
+                        <p>Movies</p>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="fw-bold text-primary">Smart</h3>
+                        <p>Recommendations</p>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="fw-bold text-primary">Instant</h3>
+                        <p>Results</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="search-card">
+                    <div class="card-body p-4">
+                        <h2 class="card-title text-center mb-4">What Movie Do You Like?</h2>
+                        
+                        {% if error %}
+                            <div class="alert alert-danger">{{ error }}</div>
+                        {% endif %}
+                        
+                        <form method="POST" action="{% url 'recommend' %}" class="search-form">
+                            {% csrf_token %}
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control form-control-lg" 
+                                       placeholder="Enter a movie title..." 
+                                       name="movie"
+                                       id="movieSearch"
+                                       aria-label="Movie search">
+                                <button class="btn btn-primary btn-lg" type="submit">
+                                    <i class="fas fa-search me-2"></i>Recommend
+                                </button>
+                            </div>
+                            <div id="suggestions" class="suggestions-box"></div>
+                        </form>
+                        
+                        <div class="text-center mt-4">
+                            <p class="mb-2">Try these popular movies:</p>
+                            <div class="d-flex justify-content-center gap-2 flex-wrap">
+                                <span class="badge bg-light text-dark pointer">The Dark Knight</span>
+                                <span class="badge bg-light text-dark pointer">Inception</span>
+                                <span class="badge bg-light text-dark pointer">Pulp Fiction</span>
+                                <span class="badge bg-light text-dark pointer">The Shawshank Redemption</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="features-section py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Discover movies tailored to your taste</p>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="text-center p-4">
+                    <div class="feature-icon mx-auto mb-4">
+                        <i class="fas fa-film fa-2x"></i>
+                    </div>
+                    <h3 class="h5">Choose Your Movie</h3>
+                    <p>Select any movie you enjoy from our database</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="text-center p-4">
+                    <div class="feature-icon mx-auto mb-4">
+                        <i class="fas fa-brain fa-2x"></i>
+                    </div>
+                    <h3 class="h5">AI Analysis</h3>
+                    <p>Our algorithm analyzes movie features and patterns</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="text-center p-4">
+                    <div class="feature-icon mx-auto mb-4">
+                        <i class="fas fa-list fa-2x"></i>
+                    </div>
+                    <h3 class="h5">Get Recommendations</h3>
+                    <p>Receive personalized movie suggestions instantly</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

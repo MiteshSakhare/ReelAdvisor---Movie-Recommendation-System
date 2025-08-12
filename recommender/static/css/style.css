@@ -1,0 +1,510 @@
+:root {
+    --primary: #0ea5e9;      /* Vibrant blue */
+    --primary-dark: #0284c7; /* Darker blue */
+    --secondary: #7dd3fc;    /* Light blue */
+    --accent: #22d3ee;       /* Teal accent */
+    --dark: #0f172a;         /* Deep navy */
+    --dark-card: #1e293b;    /* Dark card background */
+    --light: #f8fafc;        /* Light background */
+    --light-card: #ffffff;   /* White card background */
+    --text-dark: #e2e8f0;    /* Light text for dark mode */
+    --text-light: #0f172a;   /* Dark text for light mode (adjusted) */
+    --border-light: #e2e8f0; /* Light border */
+    --success: #10b981;      /* Green */
+    --warning: #f59e0b;      /* Amber */
+    --danger: #ef4444;       /* Red */
+    --muted: #94a3b8;        /* helper muted color */
+}
+
+/* Base styles */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    min-height: 100vh;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Dark theme */
+body.dark-theme {
+    background: linear-gradient(135deg, #0c0f1d, #1d2a3a);
+    color: var(--text-dark);
+}
+
+/* Light theme */
+body.light-theme {
+    background: linear-gradient(to bottom, #f0f9ff, #e6f2fb);
+    color: var(--text-light);
+}
+
+/* Navbar */
+.navbar {
+    background: rgba(15, 23, 42, 0.95) !important;
+    backdrop-filter: blur(8px);
+    padding: 12px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(126, 211, 252, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Light theme navbar override (fixes blue patch/visibility) */
+body.light-theme .navbar {
+    background: rgba(255, 255, 255, 0.98) !important;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+    box-shadow: 0 4px 12px rgba(16, 24, 40, 0.03);
+}
+
+/* Brand */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 1.8rem;
+    letter-spacing: -0.5px;
+    transition: all 0.3s ease;
+    line-height: 1;
+}
+
+/* Dark theme brand gradient */
+body.dark-theme .brand-text {
+    background: linear-gradient(to right, var(--accent), var(--primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: inherit;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.35);
+}
+
+/* Light theme brand — solid, high-contrast color (prevents invisible/blue patch) */
+body.light-theme .brand-text {
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    color: var(--text-light);
+    font-weight: 800;
+    text-shadow: none;
+}
+
+/* Search section */
+.hero-section {
+    padding: 80px 0 40px;
+    position: relative;
+}
+
+body.dark-theme .hero-section {
+    background: rgba(15, 23, 42, 0.28);
+}
+
+body.light-theme .hero-section {
+    background: rgba(240, 249, 255, 0.55);
+}
+
+/* Search card */
+.search-card {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 18px 36px rgba(2,6,23,0.35);
+    background: rgba(30, 41, 59, 0.78);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(126, 211, 252, 0.12);
+    transition: all 0.4s ease;
+}
+
+/* Light mode search card — neutral background to avoid bright blue patches */
+body.light-theme .search-card {
+    background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,250,255,0.95));
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    box-shadow: 0 8px 20px rgba(16, 24, 40, 0.06);
+}
+
+/* Hover */
+.search-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(2,6,23,0.25);
+}
+
+/* Form control */
+.search-form .form-control {
+    border-radius: 12px;
+    padding: 15px 20px;
+    font-size: 1.05rem;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-dark);
+    border: 1px solid rgba(126, 211, 252, 0.18);
+    transition: all 0.25s ease;
+}
+
+.search-form .form-control::placeholder { color: rgba(226,232,240,0.6); }
+
+.search-form .form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(14, 165, 233, 0.14);
+    border-color: var(--primary);
+}
+
+/* Light theme form */
+body.light-theme .search-form .form-control {
+    background: rgba(255,255,255,0.95);
+    color: var(--text-light);
+    border: 1px solid #dbeafe;
+}
+
+/* Suggestions box */
+.suggestions-box {
+    border-radius: 0 0 12px 12px;
+    background: var(--dark-card);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+body.light-theme .suggestions-box {
+    background: var(--light-card);
+    box-shadow: 0 10px 20px rgba(16,24,40,0.05);
+}
+
+/* Suggestion item */
+.suggestion-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(126, 211, 252, 0.06);
+    transition: all 0.18s ease;
+    color: var(--text-dark);
+}
+
+.suggestion-item:hover {
+    background: rgba(14, 165, 233, 0.06);
+}
+
+body.light-theme .suggestion-item {
+    color: var(--text-light);
+    border-bottom: 1px solid rgba(203, 213, 225, 0.6);
+}
+
+body.light-theme .suggestion-item:hover {
+    background: rgba(14, 165, 233, 0.04);
+}
+
+/* Features section */
+.features-section {
+    padding: 60px 0;
+    border-radius: 20px;
+    margin: 30px;
+    border: 1px solid rgba(126, 211, 252, 0.10);
+}
+
+body.dark-theme .features-section {
+    background: rgba(15, 23, 42, 0.26);
+}
+
+body.light-theme .features-section {
+    background: rgba(255,255,255,0.85);
+    border: 1px solid rgba(15, 23, 42, 0.04);
+}
+
+/* Titles */
+.section-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 40px;
+}
+
+/* Movie cards */
+.movie-card {
+    background: var(--dark-card);
+    border: 1px solid rgba(126, 211, 252, 0.12);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    height: 100%;
+}
+
+body.light-theme .movie-card {
+    background: var(--light-card);
+    border: 1px solid rgba(15, 23, 42, 0.06);
+    box-shadow: 0 8px 20px rgba(16,24,40,0.04);
+}
+
+.movie-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(2,6,23,0.25);
+    border-color: rgba(126, 211, 252, 0.28);
+}
+
+body.light-theme .movie-card:hover {
+    box-shadow: 0 20px 40px rgba(16,24,40,0.06);
+}
+
+/* Card image */
+.card-image {
+    position: relative;
+    height: 380px;
+    overflow: hidden;
+    background: #0b1220;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.movie-card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+/* Placeholder image box */
+.img-placeholder {
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #1e293b;
+    color: var(--muted);
+    font-size: 1rem;
+    text-align: center;
+    padding: 16px;
+}
+
+/* Light theme placeholder */
+body.light-theme .img-placeholder {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+/* Rating badge */
+.rating-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(15, 23, 42, 0.88);
+    color: #ffd700;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 1.0rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+    z-index: 10;
+}
+
+body.light-theme .rating-badge {
+    background: rgba(255,255,255,0.96);
+    color: #b45309; /* amber tone for light mode */
+    border: 1px solid rgba(15,23,42,0.04);
+}
+
+/* Card body */
+.card-body {
+    padding: 18px;
+}
+
+.card-title {
+    color: var(--text-dark);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+body.light-theme .card-title {
+    color: var(--text-light);
+}
+
+.card-text {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+body.light-theme .card-text {
+    color: #475569;
+}
+
+/* Genres badges */
+.genres {
+    margin-bottom: 12px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Default badge look */
+.genres .badge {
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 7px 12px;
+    border-radius: 8px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    transition: all 0.18s ease;
+}
+
+/* info badge */
+.badge.bg-info {
+    background: rgba(14, 165, 233, 0.12) !important;
+    color: var(--secondary) !important;
+    border: 1px solid rgba(126, 211, 252, 0.14);
+}
+
+body.light-theme .badge.bg-info {
+    background: rgba(14, 165, 233, 0.08) !important;
+    color: var(--primary) !important;
+    border: 1px solid rgba(14, 165, 233, 0.12);
+}
+
+/* Empty genres handling */
+/* If the container truly has no children: */
+.genres:empty::before,
+.genres.no-genres::before {
+    content: "No genres available";
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.04);
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px dashed rgba(226,232,240,0.06);
+}
+
+/* Light theme empty genres */
+body.light-theme .genres:empty::before,
+body.light-theme .genres.no-genres::before {
+    background: rgba(240,249,255,0.6);
+    color: #64748b;
+    border: 1px dashed rgba(15,23,42,0.04);
+}
+
+/* Buttons */
+.btn {
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+.btn-primary {
+    background: var(--primary);
+    border: none;
+    padding: 12px 26px;
+    font-size: 1.02rem;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(14, 165, 233, 0.18);
+}
+
+.btn-lg {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    border-radius: 14px;
+}
+
+/* Theme toggle */
+#themeToggle {
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.28s ease;
+}
+
+#themeToggle:hover {
+    transform: rotate(12deg);
+}
+
+/* Stats */
+.stat-item {
+    text-align: center;
+    padding: 15px;
+    border-radius: 12px;
+    background: rgba(30, 41, 59, 0.48);
+    transition: all 0.22s ease;
+}
+
+body.light-theme .stat-item {
+    background: rgba(255,255,255,0.72);
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+}
+
+.stat-value {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 0;
+}
+
+.stat-label {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* Popular movie badges */
+.badge.pointer {
+    cursor: pointer;
+    transition: all 0.18s ease;
+    font-weight: 500;
+}
+
+.badge.pointer:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .hero-section { padding: 60px 0 30px; }
+    .section-title { font-size: 2.4rem; }
+    .card-image { height: 320px; }
+}
+
+@media (max-width: 768px) {
+    .hero-section { padding: 40px 0 20px; }
+    .brand-text { font-size: 1.6rem; }
+    .section-title { font-size: 2rem; }
+    .features-section { margin: 15px; }
+    .card-image { height: 280px; }
+    .search-card { margin-top: 30px; }
+}
+
+@media (max-width: 576px) {
+    .stat-item { margin-bottom: 15px; }
+    .card-image { height: 250px; }
+    .btn-lg { padding: 12px 30px; font-size: 1.05rem; }
+}
