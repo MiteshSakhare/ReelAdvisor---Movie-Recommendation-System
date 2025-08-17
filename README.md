@@ -46,39 +46,53 @@ pip package manager
 Setup Instructions
 Clone the repository:
 
-bash
+bash:
+
 git clone https://github.com/yourusername/ReelAdvisor.git
 cd ReelAdvisor
+
 Create and activate virtual environment:
 
-bash
+bash:
+
 python -m venv venv
 source venv/bin/activate  # Windows: venv\Scripts\activate
+
 Install dependencies:
 
-bash
+bash:
 pip install -r requirements.txt
+
 Download dataset:
 
 Place tmdb_5000_movies.csv in the data/ directory
 
 Run migrations:
 
-bash
+bash:
+
 python manage.py makemigrations
+
 python manage.py migrate
+
 Import movie data:
 
-bash
+bash:
+
 python manage.py import_movies
+
 Start the development server:
 
-bash
+bash:
+
 python manage.py runserver
+
 Access the application at:
 
 text
 http://localhost:8000
+
+
 Usage Guide
 Search for a Movie: Enter a movie you like in the search box
 
@@ -89,6 +103,8 @@ Explore Details: Click on movie cards to view more information
 Switch Themes: Toggle between dark and light mode using the moon/sun icon
 
 Try Suggestions: Click on popular movie badges for quick searches
+
+
 
 Project Structure
 text
@@ -112,6 +128,9 @@ ReelAdvisor/
 ├── README.md               # Project documentation
 └── requirements.txt        # Python dependencies
 
+
+
+
 Customization
 To customize ReelAdvisor:
 
@@ -123,6 +142,8 @@ Add Features: Extend recommender/views.py
 
 Modify UI: Adjust templates in recommender/templates/
 
+
+
 Contributing
 We welcome contributions! Please follow these steps:
 
@@ -133,17 +154,5 @@ Create a new branch (git checkout -b feature/your-feature)
 Commit your changes (git commit -am 'Add some feature')
 
 Push to the branch (git push origin feature/your-feature)
-
-Create a new Pull Request
-
-License
-ReelAdvisor is released under the MIT License.
-
-Contact
-For questions or support, please contact:
-
-Your Name
-
-Project Website
 
 Discover your next favorite movie with ReelAdvisor! 🍿🎬
